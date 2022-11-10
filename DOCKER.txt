@@ -1,0 +1,467 @@
+򽸱 What is Docker?
+• Docker is an open source centralised platform designed to create, deploy and run applications.
+• Docker uses container on the host to run applications. It allows applications to use the same Linux kernel as a system on the host computer, rather than creating a whole virtual O.S.
+• Docker containers are lightweight alternatives to Virtual Machines.
+• We can install docker on any O.S. but Docker Engine runs natively on Linux distribution.
+• Docker written in 'go' language.
+• Docker is a tool that performs O.S. Level Virtualization, also known as Containerization.
+• Docker is a set of Platform As A Service (PaaS) that uses O.S. Level Virtualization whereas VMware uses Hardware Level Virtualization.
+• Docker is compatible with almost any programming language or any project that you are working on.
+
+򽸱 Why we use Docker?
+• An Application works in developers machine but not in Testing or Production machine. This is due to difference in computer environment between Developer, Tester and Production.
+• Docker provides consisting computing environment through out the whole SDLC (Software Deployment Life Cycle).
+
+򽸱 Advantages of Docker?
+• No pre-allocation of RAM
+• CI (Contineous Integration) Efficiency - Docker enables you to build a container image and use that same image across every step of the deployment process.
+• Less cost
+• It is light in weight (uses very less resources of your machine)
+• It can run on physical hardware / virtual hardware / cloud.
+• You can reuse the image
+• It tooks very less time yo create container.
+
+򽸱 Dis-advantages of Docker?
+• Docker is not a good for application that requires rich GUI (supports only command line interface)
+• Difficult to manage large amount of containers.
+• Docker does not provide cross-platform compatibility, means if application is designed to run in a docker container on windows, then it can't run on linus or vice-versa.
+• Docker is suitable when the development O.S. and testing O.S. are same. If the O.S. is different, we should use VM.
+• No solution for sata recovery and backup.
+
+򽸱 Docker Ecosystem (set of software or packages)
+• Docker Client
+• Docker Daemon or Server or Docker Engine
+• Docker Hub or Registry
+• Docker Image (Template)
+• Docker Compose
+
+򽸱 Components of Docker
+
+1. Docker Daemon:
+	• Docker Daemon runs on the Host O.S.
+	• It is responsible for running containers to manages docker services.
+	• Docker Daemon can communicate with other daemons.
+
+2. Docker Cleint:
+	• Docker user can interact with docker daemon through a client.
+	• Docker cleint uses commands (Command Line Interface) and Rest API to communicate with the docker daemon.
+	• When a client runs any server command on the docker client terminal, the terminal sends these docker commands to the docker daemon.
+	• It is possible for docker client to communicate with more than one daemon.
+
+3. Docker Host:
+	• Docker Host is used to provide an environment to execute and run apllications.
+	• It contains docker daemon, images, containers,network and storage.
+
+4. Docker Hub/registry:
+	• Docker registry manages and stores the docker images.
+	• Docker also has its own default registry called 'Docker Hub'.
+	• There are two types of registries in the docker:
+		a. Public Registry - Public registry is also called as Docker Hub.
+		b. Private Registry - It is used to share images within the enterprise.
+
+5. Docker Image:
+	• Docker images are the read only binary templates used to create docker container.
+	or
+	• Single file with all dependencies and configurations required to a container/program.
+	• Docker Image is stored in a Docker Hub or in a repository (like registry hub.docker.com)
+	• Ways to create an image:
+		a. Take image from docker hub
+		b. Create image from docker file
+		c. Create image from existing docker container
+
+6. Docker Container:
+	• Container hold the entire package that is needed to run the application.
+	or
+	• In other ways, we can say that the image is a template and the container is a copy of that template.
+	• Container is like a Virtual Machine.
+	• Images become container when they runs on docker engine. 
+	(We can done modification in container but not in image)
+
+򽸱 Basic Commands in Docker
+
+• To see all Images present in your docker machine.
+		- docker images
+
+• To find out images in docker hub.
+		- docker search ubuntu		(ubuntu related all images)
+
+• To download images from docker hub to local machine
+		- docker pull ubuntu			(pulls ubuntu image)
+
+• To run the container
+		- docker run -it ubuntu /bin/bash		(to run ubuntu image container)
+
+• To run the container with custom container name
+		- container run -it --name nitin ubuntu /bin/bash
+
+• To check wheather service is start or not
+		- service docker status
+
+• To start container
+		- docker start <container_name>
+
+• To go inside the container
+		- docker attach <container_name>
+
+• To see only running containers
+		- docker ps
+
+• To see all containers (running and stopped)
+		- docker ps -a
+
+• To stop the container
+		- docker stop <container_name>
+
+• To delete container
+		- docker rm <container_name>
+
+• To check details of container
+		- docker container inspect <container_name>
+
+•○•○•○•○•○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○••○•○•○•
+
+Google search --> AWS account --> Sign In 
+
+Services --> Compute --> EC2 --> Instances(running) --> Launch instances --> Select "Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type" 
+--> in Instance Type select "t2.micro" which is free --> in Key Pair (login) click on "Create new key pair" -> give Key pair name and select ".ppk" as Private key file format 
+--> in Network setings -> Firewall (security groups) -> Create security group -> Allow HTTPs trafic --> Launch Instance.
+
+Click on Instances --> select currently created instance --> copy Public IPv4 address (something like 13.232.14.137)
+Open PuttyGen --> load --> select downloaded docker key --> open --> ok --> click on "Save private key" --> yes -> Select target folder and provide name --> Save
+
+Open Putty --> paste copied "Public IPv4 address" in Host Name --> expand 'SSH' from Category --> click on 'Auth' --> browse --> select docker key from that target folder --> open --> open --> yes
+
+login as: ec2-user
+
+$ sudo su --> to set as a root user
+# yum update -y --> to check  any update is there or not, but it is already updated.
+# yum install docker -y --> to install docker
+# which docker --> to know whether docker installed or not
+# docker -v --> to get docker version
+# docker --version --> to get docker version
+# service docker status --> to check docker service is start or not
+# service docker start --> to start the docker service
+# service docker status --> to check docker service is start or not
+# docker images -- to check any images is there or not
+# docker ps --> to know is there any running container
+# docker ps -a --> to display running and stopped container
+
+Google search --> hub.docker.com --> search directly ubuntu --> check the spelling
+
+# docker run -it ubuntu /bin/bash --> to download ubuntu image
+# ls --> to see file inside the container
+# cat /etc/os-release --> it shows what's running on this container
+# exit --> to exit from container
+# docker images --> to see all images
+# docker run -it ubuntu /bin/bash --> it will not download again but load in fraction of second in new container because the image is directly saved in daemon
+# exit --> exit from the container
+# docker ps -a --> to display running and stopped container
+# docker images --> will display only one image i.e. ubuntu, but two containers are created with same image
+
+Google search --> hub.docker.com --> search directly centos --> check the spelling
+
+# docker run -it centos /bin/bash --> to download centos image
+# exit --> exit from the container
+# docker images --> it will dispay two images: one is ubuntu and another one is centos
+
+Google search --> hub.docker.com --> search directly jenkins --> check the spelling
+
+# docker pull jenkins --> it pulls image from docker hub in layer format but does not create container 
+# docker images -> it will dispay three images: ubuntu, centos and jenkins
+# docker run -it jenkins /bin/bash -> creates container within second because it is already downloaded
+# ls --> to display files inside this jenkins container
+# jenkins -v --> it will display jenkins version
+# exit --> exit from the container
+
+# docker search ubuntu --> to search ubuntu related all images in docker hub without going for it
+# docker search jenkins --> to search jenkins related all images in docker hub without going for it
+# docker run -it --name nitin ubuntu /bin/bash --> creates container with name nitin 
+# exit --> exit from container
+# docker ps -a --> to display running and stopped container
+# docker start <container_name> --> docker start nitin --> to start the container
+# docker ps --> to display the running container (status as up __ seconds)
+# docker attach nitin --> to go inside the container
+# exit --> exit from the container
+# docker start nitin --> to start the container
+# docker stop nitin --> to stop the container
+# docker rm nitin --> to delete the container
+# docker rm <stopped_container_name> --> to delete the container
+
+
+○ diff command
+- We have to create container from our own image. Therefore, create one container first
+	# docker run -it --name nitincontainer ubuntu /bin/bash
+	# ls --> to see files/directory presents inside this new container
+	# cd tmp/ --> to get inside this tmp directory
+	# touch nitinfile --> to create one file inside this tmp directory
+	# exit --> exit from the container
+# docker diff nitincontainer --> to see the difference between base image and changes on it
+- output we get -> 	C /tmp
+				A /tmp/nitinfile
+				C /root
+				A /root/.bash_history
+# docker commit nitincontainer nitinimage --> image created by using container
+# docker run -it --name newnitincontainer nitinimage /bin/bash --> creating new container using nitinimage
+# ls --> to see files/directories present inside this container
+# cd tmp/ --> to get inside this tmp directory
+# ls --> nitinfile
+# exit
+# docker images --> "nitinimage" is available here
+
+○ Docker file
+- Docker file is basically a text file it contains some set of instructions.
+- Docker file components:
+	FROM --> for base image this command must be on top of the docker file
+	RUN --> to execute commands, it will create a layer in image
+	MAINTAINER --> Author/Owner/Dockerfile creater/Description
+	COPY --> Copy files from local system (docker rm). We need to provide source, destination (We can't download file from internet and any remote repository)
+	ADD --> Similar to copy but it provides a feature to download files from internet, also we extract file at docker image side.
+	EXPOSE --> To expose ports such as port 8080 for tomcat, port 80 for nginx etc.
+	WORKDIR --> To set working directory for a container
+	CMD --> Execute commands but during container creation
+	ENTRYPOINT --> similar to CMD, but has higher priority over CMD, first commands will be executed by ENTRYPOINT only.
+	ENV --> Environment variable
+- Steps to create docker file:
+
+	1. Creat file named "Dockerfile"
+		# vi Dockerfile
+
+	2. Add instructions in "Dockerfile"
+		press i for insert mode
+		# FROM ubuntu
+		# RUN echo "nitin dockerfile" > /tmp/testfile
+		ESC : w q --> enter
+
+	3. Build Dockerfile to create image
+		# docker build -t nitindockerfileimg .
+		# docker images --> nitindockerfileimg
+
+	4. Run image to create container
+		# docker run -it --name nitindockerfilecontainer nitindockerfileimg /bin/bash
+		# ls
+		# cd tmp/ 
+		: /tmp # ls --> testfile
+		: /tmp # cat testfile --> nitin dockerfile
+		: /tmp # exit
+		# ls --> Dockerfile
+		# cat Dockerfile --> FROM ubuntu
+						RUN echo "nitin dockerfile" > /tmp/testfile
+
+- steps to create another one Dockerfile:
+
+	# vi Dockerfile
+
+	press i for insert mode
+	FROM ubuntu
+	WORKDIR /tmp
+	RUN echo "Nitin Dockerfile" > /tmp/testfile
+	ENV myname NitinPatil
+	COPY testfile1 /tmp
+	ADD test.tar.gz /tmp
+	press Esc : w q --> enter
+
+	# touch testfile1
+	# touch test
+	# ls --> Dockerfile	test	 testfile1
+	# tar -cvf test.tar test --> test
+	# ls --> Dockerfile	test	 testfile1	 test.tar
+	# gzip test.tar
+	# ls --> Dockerfile	test	 testfile1	 test.tar.gz
+	# rm -rf test -> to remove test directory/file
+	# ls --> Dockerfile	testfile1	test.tar.gz
+
+	# docker build -t nitindockerfile1 .
+	# docker images --> nitindockerfile1
+	
+	# docker run -it --name nitindockerfilecontainer1 nitindockerfile1 /bin/bash
+
+/tmp # ls --> test	testfile	testfile1
+/tmp # cat testfile --> Nitin Dockerfile
+/tmp # echo $myname --> NitinPatil
+/tmp # exit
+
+○ Docker Volume
+- Volume is simply a directory inside our container.
+- Firstly, we have to declare this directory as a volume and then share volume.
+- Even if we stop container, still we can access volume.
+- Volume will be created in one container.
+- You can declare a directory as a volume only while creating container
+- You can't create volume from existing container.
+- You can share one volume across any number of containers.
+- Volume will not be included when you update an image.
+- You can mapped volume in two ways.
+	a. container <---> Container 
+	b. Host <---> Container
+
+- BENEFITS OF VOLUME:
+	- Decoupling containers from storage.
+	- Share volume amoung different containers
+	- Attach volume to container
+	- On deleting container, volume does not delete.
+
+- STEPS TO CREATE VOLUME:
+• Creating Volume from Dockerfile
+	 - Create Dockerfile and write
+		# vi Dockerfile
+		press i for insert mode
+		FROM ubuntu
+		VOLUME ["/myvolume1"]
+		click on Esc : w q --> enter
+	- Create image from this Dockerfile
+		# docker build -t myvolumeimage .
+fileA fileB fileC--volumesnitinvolumecontainer3ls	
+		# docker images --> to see myvolumeimage
+	- Now create a container from this image and run
+		# docker run -it  --name volumecontainer1 myvolumeimage /bin/bash
+		# ls --> to see myvolume1
+		# cd myvolume1/
+		:/myvolume1# touch file1 file2	 file3
+		:/myvolume1# ls --> file1	file2		file3
+		:/myvolume1# exit
+	- Now share volume with another container
+		# docker run -it --name volumecontainer2 --privileged=true --volumes-from volumecontainer1 ubuntu /bin/bash
+		# ls --> to see myvolume1  --> successfully shared with another container
+		# cd myvolume1/
+		:/myvolume1# ls --> file1	file2		file3
+		:/myvolume1# exit
+		# 
+
+• Creating volume from Command
+	- Create volume by using container
+		# docker run -it --name volumecontainer3 -v /myvolume2 ubuntu /bin/bash
+		# ls --> myvolume2
+		# cd myvolume2/
+		:/myvolumes2# touch fileA fileB fileC
+		:/myvolumes2# ls
+		:/myvolumes2# exit
+	- Now create one more container and share myvolume2
+		# docker run -it --name volumecontainer4 --privileged=true --volumes-from volumecontainer3 ubuntu /bin/bash
+		# ls --> myvolume2
+		# cd myvolume2/
+		:/myvolumes2# ls --> fileA		fileB		fileC
+	- Now create one file inside this volume and then check in volumecontainer3, you can see that file
+		# touch fileABC
+		# ls --> fileABC	fileA		fileB		fileC
+		# exit
+		# docker start volumecontainer3
+		# docker attach volumecontainer3
+		# ls
+		# cd myvolume2/
+		:/myvolumes2# ls --> fileABC		fileA		fileB		fileC
+		:/myvolumes2# exit
+
+• VOLUME SHARE BETWEEN HOST <---> CONTAINER
+	- verify files in /home/ec2-user
+		# pwd --> /home/ec2-user
+		# ls
+	# docker run -it --name hostcontainer -v /home/ec2-user:/Patil --privileged=true ubuntu /bin/bash
+	# ls --> Patil
+	# cd Patil/
+	:/Patil# ls --> now we can see all files of host machine
+	:/Patil# touch Patilfile
+	:/Patil# ls
+	:/Patil# exit
+	# ls --> you will see Patilfile here also
+
+○ Some Other Command in Docker
+	# docker volume ls --> to see the list of volumes
+	# docker volume create <volume_name> --> to create volume in our machine
+	# docker volume rm <volume_name> --> to delete volume
+	# docker volume prune --> to remove all unused docker volumes
+	# docker volume inspect <volume_name> --> to check details of volume
+
+○ Docker PORT EXPOSE
+	- Login to AWS Account, create one linux instance 
+	- Now go to Putty -> login as: ec2-user and sudo su
+	# yum install update -y
+	# yum install docker -y
+	# service docker start
+	# docker run -td --name NitinPort -p 80:80 ubuntu
+	# docker ps
+	# docker port NitinPort --> 80/tcp(for container)	0.0.0.0:80(for host)
+	# docker exec -it NitinPort /bin/bash --> to get inside the container
+	# apt-get update --> update over ubuntu
+	# apt-get install apache2 -y --> to install apache2 package
+	# ls --> var
+	# cd /var/www/html
+	: var/www/html# echo "I am Unstoppable" >index.html
+	: var/www/html# service apache2 start
+
+	- copy Public ID from AWS and paste it on google --> you will see the same message "I am Unstoppable"
+	: var/www/html# exit
+
+• What is the Difference between docker attach and docker exec?	
+	- Docker exec creates a new process in the containers environment, while docker attach just connect the standard Input/Output of the main process 
+	  inside the container to corresponding standard Input/Output error of current terminal.
+	- Docker exec is specifically for running new things in a already started containers.
+
+• What is the difference between expose and publish a docker?
+	- Basically we have 3 options-
+
+	1) Neither specify "expose" nor "-p":
+	If you neither specify expose nor -p the service in the container will only be accessible from inside the container itself.
+
+	2) Only specify "expose":
+	If you expose a port, the service in the container is not accessible from outside docker but from inside other docker containers, so this is good for 
+	inter-container communication.
+
+	3) Specify "expose" and "-p":
+	If you specify expose and -p a port, the service in the container is accessible from anywhere, even outside the docker.
+
+	- If you do -p but do not expose, docker does an implicit expose. This is because, if a port is open to the public, it is automatically also open to the
+	  other docker containers. Hence -p includes expose.
+
+○ How to push docker images to docker hub
+ 	- go to AWS Account -> select amazon linux instance -> now go to putty -> login as: ec2-user
+	# sudo su
+	# yum update -y
+	# yum install docker -y
+	# service docker start
+	# docker run -it --name HubContainer ubuntu /bin/bash
+	# touch fileNitin fileNeha fileRuchita
+
+	- now create image of this container
+	# docker commit HubContainer hubimage
+	# docker images --> hubimage
+
+	- now create account in docker hub using "hub.docker.com"
+	- do remember username and password
+
+	- now go to putty and
+	# docker login --> it will ask for username and password of docker hub
+	
+	- now give tag to this created image
+	# docker tag hubimage nitinpatilp29/firsthubimage
+
+	- now push this image to docker hub
+	# docker push nitinpatilp29/firsthubimage
+	- now you can see this image in your docker hub in repositories
+	
+	- now create one more instance in Tokyo region and pull image from hub
+	# docker pull nitinpatilp29/firsthubimage
+	# docker images
+
+	- create container from this pulled image 
+	# docker run -it --name TokyoContainer nitinpatilp29/firsthubimage /bin/bash
+
+○ Some important commands
+
+	- STOP all running containers
+	# docker stop $(docker ps -a -q)
+
+	- DELETE all stopped containers
+	# docker rm $(docker ps -a -q)
+
+	- DELETE all images
+	# docker rmi -f $(docker images -q)
+
+	
+
+
+		
+
+
+
+
+
+
